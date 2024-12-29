@@ -11,21 +11,23 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python
+    - python >={{ python_min }}
     - ibis-framework
     - intake >=0.5.3
     - pandas <0.26
     - pymapd >=0.24
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - intake_omnisci
 
